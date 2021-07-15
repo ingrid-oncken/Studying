@@ -6,15 +6,16 @@ import {
   Nav,
   NavDropdown,
 } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
-const MyNavBar = () => (
+const MyNavBar = ({ search, filtered }) => (
   <Navbar bg="success" expand="lg">
     <Navbar.Brand href="#home">Rafa's Class</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
+        <Link href="#home">Home</Link>
+        <Link href="#link">Link</Link>
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">
           <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -24,7 +25,13 @@ const MyNavBar = () => (
         </NavDropdown>
       </Nav>
       <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        <FormControl
+          type="text"
+          placeholder="Search"
+          className="mr-sm-2"
+          value={search}
+          onChange={(e) => filtered(e.target.value)}
+        />
         <Button variant="success">Search</Button>
       </Form>
     </Navbar.Collapse>
